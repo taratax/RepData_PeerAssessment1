@@ -94,13 +94,9 @@ D5<-aggregate(data=D5,steps~interval,FUN="max")
 
 ## Step 6
 Code to describe and show a strategy for imputing missing data
-There are multiple strategies to deal with multiple value imputations.
-The common strategies include:
-1. Constant value imputations
-2. Regression model value imputations
-3. Mean/mode value substitutions
-For the purpose of simplicity, in this question, I will use the mean/mode value substitution strategy to impute missing values. That is, using the mean values to substitute out the missing values in the original data set
-Before doing any sort of imputation, it is helpful to understand what are the distributions of missing values by date and interval
+Here we are using the values to substitute out the missing values in the original data set.
+
+
 ```{r, echo = TRUE}
 D6<-activity
 D6$Missing<-is.na(D6$steps)
