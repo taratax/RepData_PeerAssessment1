@@ -93,8 +93,8 @@ D5<-aggregate(data=D5,steps~interval,FUN="max")
 ```
 
 ## Step 6
-Code to describe and show a strategy for imputing missing data
-Here we are using the values to substitute out the missing values in the original data set.
+## Code to describe and show a strategy for imputing missing data
+## Here we are using the values to substitute out the missing values in the original data set.
 
 
 ```{r, echo = TRUE}
@@ -140,7 +140,7 @@ names(D6.6)[[4]]<-"Steps"
 ```
 
 ## Step 7
-Histogram of the total number of steps taken each day after missing values are imputed
+## Histogram of the total number of steps taken each day after missing values are imputed
 
 ```{r, echo = TRUE}
 png("plot7.png")
