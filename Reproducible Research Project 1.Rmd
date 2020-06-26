@@ -138,3 +138,13 @@ else {D6.6[i,6]=D6.6[i,3]}
 D6.6 <-D6.6  %>% select(date,weekday,interval,Steps.Updated)
 names(D6.6)[[4]]<-"Steps"
 ```
+
+## Step 7
+Histogram of the total number of steps taken each day after missing values are imputed
+
+```{r, echo = TRUE}
+png("plot7.png")
+qplot(D6.6$Steps,geom="histogram",main="Histogram of total steps taken, after imputation",xlab="Steps",ylab="Count")
+dev.off()
+qplot(D6.6$Steps,geom="histogram",main="Histogram of total steps taken after imputation",xlab="Steps",ylab="Count")
+```
