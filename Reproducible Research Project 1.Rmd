@@ -115,3 +115,26 @@ plot(y=D6.1$Missing,x=D6.1$date,main="Missing Value Distribution by Date")
 plot(y=D6.2$Missing,x=D6.2$Interval,main="Missing Value Distribution by Interval")
 table(activity$date)
 ```
+
+```{r, echo = TRUE}
+#Dates that have missing values 
+library(lubridate)
+D6.3<-as.data.frame(D6.1) %>% select(date,Missing) %>% arrange(desc(Missing))
+D6.3<-D6.3[which(D6.3$Missing!=0),]
+D6.3$Weekday<-wday(D6.3$date,label=TRUE)
+D6.4<-activity
+D6.4$weekday<-wday(D6.4$date,label=TRUE)
+#Finding the mean of steps every monday, and every interval
+D6.5<-aggregate(data=D6.4,steps~interval+weekday,FUN="mean",na.rm=TRUE)
+#Merge the pre-imputation table D6.4 table with the average table D6.5
+D6.6<-merge(x=D6.4,y=D6.5,by.x=c("interval","weekday"),by.y=c("interval","weekday"),all.x=TRUE)
+#Conditionally replacing the steps.x column NA value with the values from steps.y column value 
+D6.6$Steps.Updated<-0
+for (i in 1:dim(D6.6)[[1]]){
+if(is.na(D6.6[i,3])){D6.6[i,6]=D6.6[i,5]}
+else {D6.6[i,6]=D6.6[i,3]}
+}
+#Now simplify the imputed analytical data frame
+D6.6 <-D6.6  %>% select(date,weekday,interval,Steps.Updated)
+names(D6.6)[[4]]<-"Steps"
+```
