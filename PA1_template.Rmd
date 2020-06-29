@@ -41,8 +41,8 @@ length(unique(activity$date))
 ```{r, echo = TRUE}
 library(ggplot2)
 D2<-data.frame(tapply(activity$steps,activity$date,sum,na.rm=TRUE))
-D2$date<-rownames(Q2)
-rownames(Q2)<-NULL
+D2$date<-rownames(D2)
+rownames(D2)<-NULL
 names(D2)[[1]]<-"Total Steps"
 png("plot1.png")
 #Total Steps by date bar chart
